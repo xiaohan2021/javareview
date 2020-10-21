@@ -2,6 +2,8 @@ package com.nowconder;
 
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -181,6 +183,9 @@ public class Main {
 
     }
 
+    /**
+     * HashMap & HashTable演示
+     */
     private static void demoMapTable() {
         Map<String, String> map = new HashMap<String, String>();
         for (int i = 0; i < 4; i++) {
@@ -200,6 +205,9 @@ public class Main {
         print(7,map.get("3"));
     }
 
+    /**
+     * Set集合演示
+     */
     private static void demoSet() {
         Set<String> strSet = new HashSet<String>();
         for (int i = 0; i < 3; i++) {
@@ -217,20 +225,84 @@ public class Main {
         strSet.addAll(Arrays.asList(new String[]{"A", "B", "C"}));
         print(6, strSet);
 
-        for(String str : strSet){
+        for(String str : strSet){ // 遍历
             print(7,str);
         }
 
     }
 
+    /**
+     * 异常
+     */
+    private static void demoException() {
+        try {
+            int k = 2;
+            // k = k / 0;
+            if(k == 2){
+                throw new Exception("数据异常");
+            }
+        } catch (Exception e){
+            print(2,e.getMessage());
+        } finally {
+            print(3,"finally");
+        }
+    }
+
+    /**
+     * 面向对象，万物皆对象
+     * 封装、接口、继承、多态
+     */
+    public static void demoOO(){
+        Animal a = new Animal("jim", 1);
+        a.say();
+        Animal person = new Person("Lei", 22, "China");
+        person.say();
+    }
+
+    /**
+     * 随机数/时间
+     */
+    private static void demoFunction() {
+        Random random = new Random(); // 随机数
+        random.setSeed(1); // 指定种子
+        print(1,random.nextInt(1000));
+        print(2,random.nextFloat());
+
+        List<Integer> array = Arrays.asList(new Integer[]{1,2,3,4,5,6});
+        Collections.shuffle(array); // 随机打乱顺序
+        print(3,array);
+
+        Date date = new Date(); // 时间
+        print(4,date);
+        print(5,date.getTime());
+
+        DateFormat df  = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // 时间格式
+        print(6,df.format(date));
+
+        print(7,UUID.randomUUID()); // 随机ID
+
+        print(8,Math.log(10));
+        print(9,Math.min(3,10));
+        print(10,Math.max(3,10));
+        print(11,Math.ceil(2.2)); // 向上取整
+        print(12,Math.floor(2.2)); // 向下取整
+
+    }
 
     public static void main(String[] args) {
         // print(1,"Hello World 1"); // 打印
         // demoOperation(); // 运算符
         // demoString(); // 字符串
-        // demoControlFlow();
-        // demoList();
-        // demoMapTable();
-        demoSet();
+        // demoControlFlow(); // 控制流
+        // demoList(); // 有序集合
+        // demoMapTable(); // map和table
+        // demoSet(); // 无序集合
+        // demoException(); // 异常
+        // demoOO(); // 面向对象
+        demoFunction(); // 随机数和时间
     }
+
+
+
+
 }
